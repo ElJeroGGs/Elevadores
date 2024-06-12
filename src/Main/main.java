@@ -1,6 +1,10 @@
 package Main;
+
+import Vista.PanelAscensor;
+import Vista.PanelPrincipal;
+
 public class main {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+    public static void main(String[] args)  {
+        PanelPrincipal ventana = new PanelPrincipal();
     }
 }
