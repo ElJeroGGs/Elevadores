@@ -60,13 +60,8 @@ package Modelo;
       
 
 
-      Usuario lupita = new Usuario(ascensor, "Lupita", 0, p1);
-      Usuario pepe = new Usuario(ascensor, "Pepe", 3, p2);
-     Usuario juan = new Usuario(ascensor2, "Juan", 8, p3);
       
-      lupita.start();
-     pepe.start();
-      juan.start();
+      
     }
 
   }
