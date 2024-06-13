@@ -24,14 +24,19 @@ public class main {
         int[] numeros2 = {1, 7, 3, 4, 8};
 
         Ascensor asc = new Ascensor(0);
+        Ascensor asc2 = new Ascensor(1);
+       
         Usuario user1 = new Usuario(asc, "Ledezma",numeros, 1);
 
         user1.setCtrl(ctrl);
-        Usuario user2 = new Usuario(asc, "Generico",numeros2,2);
+        Usuario user2 = new Usuario(asc2, "Generico",numeros2,2);
         user2.setCtrl(ctrl);
 
         ctrl.setRecorrido(numeros, 1);
         ctrl.setRecorrido(numeros2, 2);
+
+        asc.setCtrl(ctrl);
+        asc2.setCtrl(ctrl);
 
         //user1.llamarAscensor(5);
         //user1.llamarAscensor(0);

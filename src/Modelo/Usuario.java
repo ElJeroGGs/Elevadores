@@ -53,23 +53,18 @@ public class Usuario extends Thread {
     // System.out.println("El usuario " + nombre + " está esperando en el piso " +
     // piso + " para ir al piso " + destino);
 
-    // String mensaje1 = "El usuario " + nombre + " se ha subido en el ascensor en
-    // el piso " + piso;
-    // ascensor.llamar(piso, mensaje1);
+    String mensaje1 = "El usuario " + nombre + " se ha subido en el ascensor en el piso " + piso;
+    ascensor.llamar(piso, this.id);
 
-    // String mensaje2 = "El usuario " + nombre + " ha bajado en el piso " +
-    // destino;
-    // ascensor.llamar(destino, mensaje2);
-    // piso = destino;
+    String mensaje2 = "El usuario " + nombre + " ha bajado en el piso " + destino;
+    ascensor.llamar(destino, this.id);
+    piso = destino;
 
   }
 
   // Método run
   @Override
   public synchronized void run() {
-    // for(int i = 0; i < pisos.length; ++i) {
-    // llamarAscensor(pisos[i]);
-    // }
 
     String reco = "[" + this.pisos[0];
     for (int i = 1; i < this.pisos.length; i++) {
@@ -78,6 +73,13 @@ public class Usuario extends Thread {
 
     }
     reco += "]";
+    
+    for(int i = 0; i < pisos.length; ++i) {
+    ctrl.pintaRecorrido(reco, i, this.id);
+    llamarAscensor(pisos[i]);
+    }
+
+    
 
     for (int i = 0; i < this.pisos.length; i++) {
       ctrl.pintaRecorrido(reco, i, this.id);

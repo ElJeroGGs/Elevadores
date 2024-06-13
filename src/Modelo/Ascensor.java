@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import Controlador.control_principal;
+
 /**
  *
  * @author leledezma
@@ -14,6 +16,7 @@ package Modelo;
     private int piso;
     private boolean parado;
     private int id;
+    private control_principal ctrl;
 
     //Constructor de la clase
     public Ascensor(int id) {
@@ -22,9 +25,13 @@ package Modelo;
       this.id = id;
     }
 
+    public void setCtrl (control_principal contro){
+      this.ctrl = contro;
+    }
+
     //Método que si dada la posición del ascensor y el piso desde el que le llaman,
     //controla si el ascensor sube o baja
-    public synchronized void llamar(int p, String mensaje) {
+    public synchronized void llamar(int p, int ascensor) {
 
 
       while(!parado) {
@@ -34,13 +41,17 @@ package Modelo;
           return ;
         }
       }
-      
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        return;
+      }
       if(piso > p) {
-        bajar(p, mensaje);
+        bajar(p, ascensor);
         } else if(piso < p) {
-          subir(p, mensaje);
+          subir(p, ascensor);
             } else if(piso==p){
-              stay(p, mensaje);
+              stay(p, ascensor);
                 }
 
       
@@ -49,7 +60,7 @@ package Modelo;
     //Método modificador que simula la subida del ascensor. Muestra un mensaje cuando
     //el ascensor ha llegado al destino.
     
-    public synchronized void subir(int p, String mensaje) {
+    public synchronized void subir(int p, int asc) {
       while(!parado) {
         try {
           wait();
@@ -59,16 +70,12 @@ package Modelo;
       }
       parado = false;
       while (piso != p) {
+        ctrl.moverAscensor(p, asc);
         ++piso;
         System.out.println("Ascensor " + this.id+ " en el piso " + piso);
-        try {
-          Thread.sleep(1000);
-        } catch (InterruptedException e) {
-          return ;
-        }
+        
       }
       parado = true;
-      System.out.println(mensaje);
       notifyAll();
     }
 
@@ -76,7 +83,7 @@ package Modelo;
 
     //Método modificador que simula la bajada del ascensor. Muestra un mensaje cuando
     //el ascensor ha llegado al destino.
-    public synchronized void bajar(int p, String mensaje) {
+    public synchronized void bajar(int p, int asc) {
       while(!parado) {
         try {
           wait();
@@ -86,20 +93,17 @@ package Modelo;
       }
       parado = false;
       while (piso != p) {
+      ctrl.moverAscensor(p, p);
+      ctrl.moverAscensor(p, asc);
         --piso;
         System.out.println("Ascensor "+this.id+ " en el piso " + piso);
-        try {
-          Thread.sleep(1000);
-        } catch (InterruptedException e) {
-          return ;
-        }
+        
       }
       parado = true;
-      System.out.println(mensaje);
       notifyAll();
     }
 
-    public synchronized void stay(int p, String mensaje) {
+    public synchronized void stay(int p, int asc) {
 
       while(!parado) {
         try {
@@ -109,12 +113,8 @@ package Modelo;
         }
       }
       parado = false;
-
-        try {
-          Thread.sleep(1000);
-        } catch (InterruptedException e) {
-          return ;
-        }
+      ctrl.moverAscensor(p, asc);
+        
       
       parado = true;
       notifyAll();
