@@ -125,4 +125,20 @@ public class control_principal {
     }
 
 
+    public void reiniciar() {
+          // Interrumpir los hilos actuales
+    this.user1.interrupt();
+    this.user2.interrupt();
+    this.user3.interrupt();
+    this.user4.interrupt();
+
+
+    // Iniciar los nuevos hilos
+    this.user1.start();
+    this.user2.start();
+    this.user3.start();
+    this.user4.start();
+    }
+
+
 }

@@ -114,7 +114,7 @@ public class Usuario extends Thread {
 
   // Método run
   @Override
-  public synchronized void run() {
+  public  void run() {
 
     String reco = "[" + this.pisos[0];
     for (int i = 1; i < this.pisos.length; i++) {
