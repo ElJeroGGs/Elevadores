@@ -159,7 +159,7 @@ public class PanelAscensor extends JPanel {
                 break;
             }
             try {
-                Thread.sleep(5);
+                Thread.sleep(4);
             } catch (InterruptedException e) {
                 return;
             }
@@ -211,7 +211,7 @@ public class PanelAscensor extends JPanel {
                 break;
             }
             try {
-                Thread.sleep(5);
+                Thread.sleep(4);
             } catch (InterruptedException e) {
                 return;
             }
@@ -229,7 +229,7 @@ public class PanelAscensor extends JPanel {
         int piso = 0;
         
             try {
-                Thread.sleep(5);
+                Thread.sleep(4);
             } catch (InterruptedException e) {
                 return;
             }
@@ -271,7 +271,7 @@ public class PanelAscensor extends JPanel {
     
         public void AscensorOUT(int asc, int piso, int ide) {
             //aparte de mover al muñequito, debo "lockear" al mono pa que no se mueva
-int numero = 35;
+        int numero = 35;
             Usuario user = null;
         switch(ide){
             case 1:

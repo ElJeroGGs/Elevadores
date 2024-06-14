@@ -15,6 +15,8 @@ public class control_principal {
     private Usuario user2;
     private Usuario user3;
     private Usuario user4;
+    private Ascensor ascensor1;
+    private Ascensor ascensor2;
     
 
     public void setPanelPrincipal (PanelPrincipal window){
@@ -38,10 +40,12 @@ public class control_principal {
         switch (ascensor) {
             case 1:
                 moverAscensor1(floor, id);
+                this.ascensor1.setPiso(floor);
                 break;
         
            case 2:
                 moverAscensor2(floor, id);
+                this.ascensor2.setPiso(floor);
                 break;
         }
     }
@@ -82,20 +86,24 @@ public class control_principal {
         switch(i){
             case 1:
             PanelAscensor.setUsuario(user, "green");
+            this.ascensor1 = user.getAscensor();
             
             this.user1 = user;
             break;
             case 2:
             PanelAscensor.setUsuario(user, "yellow");
             this.user2 = user;
+            this.ascensor2 = user.getAscensor();
             break;
             case 3:
             PanelAscensor.setUsuario(user, "red");
             this.user3 = user;
+            this.ascensor1 = user.getAscensor();
             break;
             case 4:
             PanelAscensor.setUsuario(user, "white");
             this.user4 = user;
+            this.ascensor2 = user.getAscensor();
             break;
 
         }
@@ -110,9 +118,9 @@ public class control_principal {
 
     public void empezar() {
 
-        //this.user1.start();
+        this.user1.start();
         this.user2.start();
-        //this.user3.start();
+        this.user3.start();
         this.user4.start();
     }
 

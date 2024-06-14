@@ -30,16 +30,16 @@ public class main {
         Ascensor asc = new Ascensor(1);
         Ascensor asc2 = new Ascensor(2);
        
-        Usuario user1 = new Usuario(asc, "Ledezma",numeros, 1, 35);
+        Usuario user1 = new Usuario(asc, "Verde",numeros, 1, 35);
         user1.setCtrl(ctrl);
 
-        Usuario user2 = new Usuario(asc2, "Generico",numeros2,2, 35);
+        Usuario user2 = new Usuario(asc2, "Amarillo",numeros2,2, 35);
         user2.setCtrl(ctrl);
 
-        Usuario user3 = new Usuario(asc, "Jero",numeros3, 3, 35);
+        Usuario user3 = new Usuario(asc, "Rojo",numeros3, 3, 35);
         user3.setCtrl(ctrl);
 
-        Usuario user4 = new Usuario(asc2, "Boyer",numeros4, 4, 35);
+        Usuario user4 = new Usuario(asc2, "Blanco",numeros4, 4, 35);
         user4.setCtrl(ctrl);
         
 

@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.util.Random;
+
 import Controlador.control_principal;
 
 /**
@@ -76,7 +78,7 @@ public class Usuario extends Thread {
   }
 
   // Método que llama al ascensor para ir de un piso a otro
-  public void llamarAscensor(int destino) {
+  public  synchronized void llamarAscensor(int destino) {
 
     // System.out.println("El usuario " + nombre + " está esperando en el piso " +
     // piso + " para ir al piso " + destino);
@@ -86,19 +88,25 @@ public class Usuario extends Thread {
 
 
     System.out.println(mensaje1);
-    
-    ascensor.llamar(piso, this.ascensor.getid(),this.id,"viene");
+    //Que aqui la bandera sea true
+    ascensor.setFin(true);
+    ascensor.llamar(this.piso, this.ascensor.getid(),this.id,"viene");
+    ascensor.llamar(destino, this.ascensor.getid(),this.id,"sube");
+    ascensor.llamar(destino, this.ascensor.getid(),this.id,"baja");
+
    
-    
     
 
     String mensaje2 = "El usuario " + nombre + " ha bajado en el piso " + destino;
-    ascensor.llamar(destino, this.ascensor.getid(),this.id,"sube");
-
-    ascensor.llamar(destino, this.ascensor.getid(),this.id,"baja");
+ 
+ 
+//Que aqui la bandera sea false
     
-    System.out.println(mensaje2);
+    ascensor.setFin(false);
     piso = destino;
+    System.out.println(mensaje2);
+    
+    
 
   }
 
@@ -116,9 +124,11 @@ public class Usuario extends Thread {
     
     for(int i = 0; i < pisos.length; ++i) {
       //metodo que pinta si ya recorrió un piso
-    ctrl.pintaRecorrido(reco, i, this.id);
-    
+      
+      ctrl.pintaRecorrido(reco, i, this.id);
       llamarAscensor(pisos[i]);
+      
+      
 
       
       

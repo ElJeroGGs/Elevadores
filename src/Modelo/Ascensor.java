@@ -17,6 +17,7 @@ import Controlador.control_principal;
     private boolean parado;
     private int id;
     private control_principal ctrl;
+    private boolean fin;
 
     //Constructor de la clase
     public Ascensor(int id) {
@@ -25,6 +26,14 @@ import Controlador.control_principal;
       this.id = id;
     }
 
+    public void setFin(boolean valor){
+      this.fin = valor;
+    }
+
+    public synchronized void setPiso(int floor){
+
+      this.piso = floor;
+    }
     public int getid(){
       return this.id;
     }
@@ -39,19 +48,9 @@ import Controlador.control_principal;
 
       //Dependiendo de accion, la bolita se sube o se baja del ascensor
 
-      switch (accion) {
-        case "sube":
-        ctrl.AscensorIN(this.id, ascensor, id);
-          break;
-        case "baja":
-        ctrl.AscensorOUT(this.id, ascensor, id);
-          break;
       
-        default:
-          break;
-      }
 
-      while(!parado) {
+      while(!parado ) {
         try {
           wait();
         } catch (InterruptedException e) {
@@ -59,10 +58,8 @@ import Controlador.control_principal;
         }
       }
 
-      try {
-        sleep(500);
-      } catch (Exception e) {
-      }
+      
+      
       
       if(piso > p) {
         bajar(p, ascensor, id, accion);
@@ -73,7 +70,11 @@ import Controlador.control_principal;
                 }
       
                 
-      
+      try {
+        sleep(650);
+      } catch (Exception e) {
+        // TODO: handle exception
+      }
     }
 
 
@@ -92,15 +93,26 @@ import Controlador.control_principal;
           return ;
         }
       }
+      switch (accion) {
+        case "sube":
+        ctrl.AscensorIN(this.id, asc, id);
+          break;
+        case "baja":
+        ctrl.AscensorOUT(this.id, asc, id);
+          break;
+      
+        default:
+          break;
+      }
+    
       parado = false;
       while (piso != p) {
         ctrl.moverAscensor(p, asc, id);
-        ++piso;
+        
         System.out.println("Ascensor " + this.id+ " en el piso " + piso);
         
       }
      
-    
       parado = true;
       notifyAll();
     }
@@ -118,16 +130,28 @@ import Controlador.control_principal;
           return ;
         }
       }
+      switch (accion) {
+        case "sube":
+        ctrl.AscensorIN(this.id, asc, id);
+          break;
+        case "baja":
+        ctrl.AscensorOUT(this.id, asc, id);
+          break;
+      
+        default:
+          break;
+      }
       
       parado = false;
       while (piso != p) {
       ctrl.moverAscensor(p, asc, id);
-        --piso;
+       
       
         System.out.println("Ascensor "+this.id+ " en el piso " + piso);
         
       }
       
+    
       
       parado = true;
       
@@ -146,6 +170,17 @@ import Controlador.control_principal;
       parado = false;
       ctrl.moverAscensor(p, asc, id);
         
+      switch (accion) {
+        case "sube":
+        ctrl.AscensorIN(this.id, asc, id);
+          break;
+        case "baja":
+        ctrl.AscensorOUT(this.id, asc, id);
+          break;
+      
+        default:
+          break;
+      }
       
       parado = true;
 
