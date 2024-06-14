@@ -17,7 +17,7 @@ public class PanelAscensor extends JPanel {
     private Usuario green;
     private Usuario yellow;
     private Usuario red;
-    private Usuario black;
+    private Usuario white;
 
 
     public PanelAscensor() {
@@ -36,8 +36,8 @@ public class PanelAscensor extends JPanel {
             case "red":
             this.red = user;
                 break;
-            case "black":
-            this.black = user;
+            case "white":
+            this.white = user;
                 break;
         
         }
@@ -49,7 +49,7 @@ public class PanelAscensor extends JPanel {
         super.paintComponent(g);
 
         // Draw building
-        g.setColor(Color.RED);
+        g.setColor(Color.gray);
         g.fillRect(290, 100, 200, 800);
 
         // Draw elevator 1 y 2 dependiendo de que planta este
@@ -93,6 +93,10 @@ public class PanelAscensor extends JPanel {
             g2.fillOval( 335+this.green.getAbordo(),(this.green.getFloor()) + 50, 12, 12);
             g2.setColor(Color.YELLOW);
             g2.fillOval( 425+this.yellow.getAbordo(),(this.yellow.getFloor()) + 50, 12, 12);
+            g2.setColor(Color.RED);
+            g2.fillOval( 350+this.red.getAbordo(),(this.red.getFloor()) + 50, 12, 12);
+            g2.setColor(Color.WHITE);
+            g2.fillOval( 440+this.white.getAbordo(),(this.white.getFloor()) + 50, 12, 12);
         }
 
     }
@@ -128,7 +132,7 @@ public class PanelAscensor extends JPanel {
             user = this.red;
             break;
             case 4:
-            user = this.black;
+            user = this.white;
             break;
         }
 
@@ -170,7 +174,7 @@ public class PanelAscensor extends JPanel {
             user = this.red;
             break;
             case 4:
-            user = this.black;
+            user = this.white;
             break;
         }
 
@@ -218,6 +222,7 @@ public class PanelAscensor extends JPanel {
        
 
         Usuario user = null;
+        int numero = 0;
         switch(ide){
             case 1:
             user = this.green;
@@ -227,20 +232,24 @@ public class PanelAscensor extends JPanel {
             break;
             case 3:
             user = this.red;
+            numero = -15;
             break;
             case 4:
-            user = this.black;
+            user = this.white;
+            numero = -15;
             break;
         }
 
-        user.setAbordo(0);
+        user.setAbordo(numero);
+        repaint();
+        revalidate();
 
     
         }
     
         public void AscensorOUT(int asc, int piso, int ide) {
             //aparte de mover al muñequito, debo "lockear" al mono pa que no se mueva
-
+int numero = 35;
             Usuario user = null;
         switch(ide){
             case 1:
@@ -251,13 +260,18 @@ public class PanelAscensor extends JPanel {
             break;
             case 3:
             user = this.red;
+            numero = 20;
             break;
             case 4:
-            user = this.black;
+            user = this.white;
+            numero = 20;
             break;
         }
 
-        user.setAbordo(35);
+        user.setAbordo(numero);
+        repaint();
+        revalidate();
+        
         }
 
     //Coordenadas de los sujetos

@@ -34,6 +34,7 @@ public class control_principal {
 
     public void moverAscensor(int floor, int ascensor, int id){
 
+        
         switch (ascensor) {
             case 1:
                 moverAscensor1(floor, id);
@@ -81,6 +82,7 @@ public class control_principal {
         switch(i){
             case 1:
             PanelAscensor.setUsuario(user, "green");
+            
             this.user1 = user;
             break;
             case 2:
@@ -92,7 +94,7 @@ public class control_principal {
             this.user3 = user;
             break;
             case 4:
-            PanelAscensor.setUsuario(user, "black");
+            PanelAscensor.setUsuario(user, "white");
             this.user4 = user;
             break;
 
@@ -108,8 +110,10 @@ public class control_principal {
 
     public void empezar() {
 
-        this.user1.start();
+        //this.user1.start();
         this.user2.start();
+        //this.user3.start();
+        this.user4.start();
     }
 
 

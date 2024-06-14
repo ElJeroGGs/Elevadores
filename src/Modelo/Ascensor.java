@@ -39,6 +39,17 @@ import Controlador.control_principal;
 
       //Dependiendo de accion, la bolita se sube o se baja del ascensor
 
+      switch (accion) {
+        case "sube":
+        ctrl.AscensorIN(this.id, ascensor, id);
+          break;
+        case "baja":
+        ctrl.AscensorOUT(this.id, ascensor, id);
+          break;
+      
+        default:
+          break;
+      }
 
       while(!parado) {
         try {
@@ -46,6 +57,11 @@ import Controlador.control_principal;
         } catch (InterruptedException e) {
           return ;
         }
+      }
+
+      try {
+        sleep(500);
+      } catch (Exception e) {
       }
       
       if(piso > p) {
@@ -66,6 +82,9 @@ import Controlador.control_principal;
     //el ascensor ha llegado al destino.
     
     public synchronized void subir(int p, int asc, int id, String accion) {
+
+      
+
       while(!parado) {
         try {
           wait();
@@ -80,18 +99,9 @@ import Controlador.control_principal;
         System.out.println("Ascensor " + this.id+ " en el piso " + piso);
         
       }
+     
+    
       parado = true;
-      switch (accion) {
-        case "sube":
-          ctrl.AscensorIN(this.id, asc, id);
-          break;
-        case "baja":
-        ctrl.AscensorOUT(this.id, asc, id);
-          break;
-      
-        default:
-          break;
-      }
       notifyAll();
     }
 
@@ -100,6 +110,7 @@ import Controlador.control_principal;
     //Método modificador que simula la bajada del ascensor. Muestra un mensaje cuando
     //el ascensor ha llegado al destino.
     public synchronized void bajar(int p, int asc, int id, String accion) {
+      
       while(!parado) {
         try {
           wait();
@@ -107,25 +118,19 @@ import Controlador.control_principal;
           return ;
         }
       }
+      
       parado = false;
       while (piso != p) {
       ctrl.moverAscensor(p, asc, id);
         --piso;
+      
         System.out.println("Ascensor "+this.id+ " en el piso " + piso);
         
       }
-      parado = true;
-      switch (accion) {
-        case "sube":
-          ctrl.AscensorIN(this.id, asc, id);
-          break;
-        case "baja":
-        ctrl.AscensorOUT(this.id, asc, id);
-          break;
       
-        default:
-          break;
-      }
+      
+      parado = true;
+      
       notifyAll();
     }
 
@@ -144,18 +149,6 @@ import Controlador.control_principal;
       
       parado = true;
 
-      switch (accion) {
-        case "sube":
-          ctrl.AscensorIN(this.id, asc, id);
-          
-          break;
-        case "baja":
-        ctrl.AscensorOUT(this.id, asc, id);
-          break;
-      
-        default:
-          break;
-      }
       
       notifyAll();
     }

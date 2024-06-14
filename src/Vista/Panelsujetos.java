@@ -27,13 +27,27 @@ JLabel rec4;
         
         JLabel sujeto2 = new JLabel("amarillo");
 
+        JLabel sujeto3 = new JLabel("rojo");
+
+        JLabel sujeto4 = new JLabel("blanco");
+
+        sujeto1.setFont(new Font("Serif", Font.PLAIN, 40));
         sujeto2.setFont(new Font("Serif", Font.PLAIN, 40));
-        sujeto1.setFont(new Font("Serif", Font.PLAIN, 40)); // Cambia el tamaño de la fuente aquí
+        sujeto3.setFont(new Font("Serif", Font.PLAIN, 40));
+        sujeto4.setFont(new Font("Serif", Font.PLAIN, 40));
+         
+        // Cambia el tamaño de la fuente aquí
         add(sujeto1);
         add(sujeto2);
+        add(sujeto3);
+        add(sujeto4);
         sujeto1.setBounds(0, 100, 200, 60);
         
         sujeto2.setBounds(0, 300, 200, 60);
+
+        sujeto3.setBounds(0, 500, 200, 60);
+
+        sujeto4.setBounds(0, 700, 200, 60);
         
     }
 
@@ -65,9 +79,17 @@ JLabel rec4;
         break;
     case 3:
         this.recorrido3 = recorrido;
+        rec3 = new JLabel(reco);
+        rec3.setFont(new Font("Serif", Font.PLAIN, 30));
+        rec3.setBounds(0, 550, 200, 60);
+        add(rec3);
         break;
     case 4:
         this.recorrido4 = recorrido;
+        rec4 = new JLabel(reco);
+        rec4.setFont(new Font("Serif", Font.PLAIN, 30));
+        rec4.setBounds(0, 750, 200, 60);
+        add(rec4);
         break;
 }
 
@@ -116,12 +138,23 @@ JLabel rec4;
                 this.repaint();
                 break;
             case 3:
-            
+            this.remove(rec3);
+            rec3 = new JLabel("<html><font color='black'>" + firstHalf + "</font><font color='red'>" + secondHalf + "</font><font color='black'>" + firstHalf2 +firstHalf3+ "</font></html>");
+                rec3.setFont(new Font("Serif", Font.PLAIN, 30));
+                rec3.setBounds(0, 550, 200, 60);
+                add(rec3);
+                this.revalidate();
+                this.repaint();
                 break;
             case 4:
-               
+            this.remove(rec4);
+            rec4 = new JLabel("<html><font color='black'>" + firstHalf + "</font><font color='white'>" + secondHalf + "</font><font color='black'>" + firstHalf2 +firstHalf3+ "</font></html>");
+                rec4.setFont(new Font("Serif", Font.PLAIN, 30));
+                rec4.setBounds(0, 750, 200, 60);
+                add(rec4);
+                this.revalidate();
+                this.repaint();
                 break;
-
     }
 }
 
