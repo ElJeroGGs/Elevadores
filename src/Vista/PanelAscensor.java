@@ -139,11 +139,22 @@ public class PanelAscensor extends JPanel {
 //Mueve el ascensor
         while(piso != 820 - 100 * floor) {
             if (piso < 820 - 100 * floor) {
-                piso += 1;
-                user.setFloor(piso); 
-            } else if (piso > 820 - 100 * floor) {
-                piso -= 1;
+                if(user.getFloor() != piso){
+                    piso += 1;
+                }else{
+                    piso += 1;
                 user.setFloor(piso);
+                }
+                
+
+            } else if (piso > 820 - 100 * floor) {
+                if(user.getFloor() != piso){
+                    piso -= 1;
+                }else{
+                    piso -= 1; 
+                user.setFloor(piso);
+                }
+                
             } else {
                 break;
             }
@@ -180,11 +191,22 @@ public class PanelAscensor extends JPanel {
 
         while(piso2 != 820 - 100 * floor) {
             if (piso2 < 820 - 100 * floor) {
+                if(user.getFloor() != piso2){
                 piso2 += 1;
+                }else{
+                piso2 += 1; 
                 user.setFloor(piso2);
+                }
+                
+               
             } else if (piso > 820 - 100 * floor) {
-                piso2 -= 1;
+                if(user.getFloor() != piso2){
+                    piso2 -= 1;
+                }else{
+                    piso2 -= 1;
                 user.setFloor(piso2);
+                }
+                
             } else {
                 break;
             }
