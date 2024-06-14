@@ -20,6 +20,7 @@ public class Usuario extends Thread {
   private control_principal ctrl;
   private int id;
   private int floor;
+  private int abordo;
 
 
   // Constructor de la clase
@@ -28,6 +29,18 @@ public class Usuario extends Thread {
     piso = 0;
     ascensor = a;
     this.id = id;
+    abordo = 40;
+    this.floor = 820 - 100*piso;
+  }
+
+  public int getAbordo(){
+
+    return this.abordo;
+  }
+
+  public void setAbordo(int num){
+
+    this.abordo=num;
   }
 
   public int getPiso() {
@@ -54,6 +67,7 @@ public class Usuario extends Thread {
     pisos = lp;
     this.id = id;
     this.floor = 820 - 100*piso;
+    this.abordo = 40;
   }
 
   public void VerPisos() {
@@ -73,14 +87,21 @@ public class Usuario extends Thread {
 
     System.out.println(mensaje1);
     
-    ascensor.llamar(piso, this.ascensor.getid(),this.id);
+    ascensor.llamar(piso, this.ascensor.getid(),this.id,"sube");
+   
     
     
 
     String mensaje2 = "El usuario " + nombre + " ha bajado en el piso " + destino;
-    ascensor.llamar(destino, this.ascensor.getid(),this.id);
+    ascensor.llamar(destino, this.ascensor.getid(),this.id,"baja");
+    
     System.out.println(mensaje2);
     piso = destino;
+    try {
+      sleep(500);
+    } catch (InterruptedException e) {
+      return ;
+    }
 
   }
 

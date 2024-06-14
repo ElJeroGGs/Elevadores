@@ -90,9 +90,9 @@ public class PanelAscensor extends JPanel {
 
             //Draw people 
             g2.setColor(Color.GREEN);
-            g2.fillOval( 335,(this.green.getFloor()) + 50, 12, 12);
+            g2.fillOval( 335+this.green.getAbordo(),(this.green.getFloor()) + 50, 12, 12);
             g2.setColor(Color.YELLOW);
-            g2.fillOval( 425,(this.yellow.getFloor()) + 50, 12, 12);
+            g2.fillOval( 425+this.yellow.getAbordo(),(this.yellow.getFloor()) + 50, 12, 12);
         }
 
     }
@@ -215,20 +215,49 @@ public class PanelAscensor extends JPanel {
 
     public void AscensorIN(int asc, int piso, int ide) {
 
-        switch(asc){
-    
+       
+
+        Usuario user = null;
+        switch(ide){
             case 1:
+            user = this.green;
             break;
-            
-            case 2: 
+            case 2:
+            user = this.yellow;
+            break;
+            case 3:
+            user = this.red;
+            break;
+            case 4:
+            user = this.black;
             break;
         }
+
+        user.setAbordo(0);
+
     
         }
     
         public void AscensorOUT(int asc, int piso, int ide) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'AscensorOUT'");
+            //aparte de mover al muñequito, debo "lockear" al mono pa que no se mueva
+
+            Usuario user = null;
+        switch(ide){
+            case 1:
+            user = this.green;
+            break;
+            case 2:
+            user = this.yellow;
+            break;
+            case 3:
+            user = this.red;
+            break;
+            case 4:
+            user = this.black;
+            break;
+        }
+
+        user.setAbordo(35);
         }
 
     //Coordenadas de los sujetos

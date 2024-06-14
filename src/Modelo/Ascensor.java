@@ -35,7 +35,9 @@ import Controlador.control_principal;
 
     //Método que si dada la posición del ascensor y el piso desde el que le llaman,
     //controla si el ascensor sube o baja
-    public synchronized void llamar(int p, int ascensor, int id) {
+    public synchronized void llamar(int p, int ascensor, int id, String accion) {
+
+      //Dependiendo de accion, la bolita se sube o se baja del ascensor
 
 
       while(!parado) {
@@ -47,11 +49,11 @@ import Controlador.control_principal;
       }
       
       if(piso > p) {
-        bajar(p, ascensor, id);
+        bajar(p, ascensor, id, accion);
         } else if(piso < p) {
-          subir(p, ascensor, id);
+          subir(p, ascensor, id, accion);
             } else if(piso==p){
-              stay(p, ascensor, id);
+              stay(p, ascensor, id, accion);
                 }
       
                 
@@ -63,7 +65,7 @@ import Controlador.control_principal;
     //Método modificador que simula la subida del ascensor. Muestra un mensaje cuando
     //el ascensor ha llegado al destino.
     
-    public synchronized void subir(int p, int asc, int id) {
+    public synchronized void subir(int p, int asc, int id, String accion) {
       while(!parado) {
         try {
           wait();
@@ -79,6 +81,17 @@ import Controlador.control_principal;
         
       }
       parado = true;
+      switch (accion) {
+        case "sube":
+          ctrl.AscensorIN(this.id, asc, id);
+          break;
+        case "baja":
+        ctrl.AscensorOUT(this.id, asc, id);
+          break;
+      
+        default:
+          break;
+      }
       notifyAll();
     }
 
@@ -86,7 +99,7 @@ import Controlador.control_principal;
 
     //Método modificador que simula la bajada del ascensor. Muestra un mensaje cuando
     //el ascensor ha llegado al destino.
-    public synchronized void bajar(int p, int asc, int id) {
+    public synchronized void bajar(int p, int asc, int id, String accion) {
       while(!parado) {
         try {
           wait();
@@ -102,10 +115,21 @@ import Controlador.control_principal;
         
       }
       parado = true;
+      switch (accion) {
+        case "sube":
+          ctrl.AscensorIN(this.id, asc, id);
+          break;
+        case "baja":
+        ctrl.AscensorOUT(this.id, asc, id);
+          break;
+      
+        default:
+          break;
+      }
       notifyAll();
     }
 
-    public synchronized void stay(int p, int asc, int id) {
+    public synchronized void stay(int p, int asc, int id, String accion) {
 
       while(!parado) {
         try {
@@ -119,23 +143,24 @@ import Controlador.control_principal;
         
       
       parado = true;
+
+      switch (accion) {
+        case "sube":
+          ctrl.AscensorIN(this.id, asc, id);
+          
+          break;
+        case "baja":
+        ctrl.AscensorOUT(this.id, asc, id);
+          break;
+      
+        default:
+          break;
+      }
+      
       notifyAll();
     }
 
-    public synchronized void AscensorIN(){
-    parado = true;
-
-    }
-
-    public synchronized void AscensorOUT(){
-
-      parado = true;
-      int floor = 0;
-      int id = 0;
-      ctrl.AscensorOUT(this, floor, id);
-
-
-    }
+   
 
     //Método observador que muestra el piso
     public synchronized void mostrarPiso() {

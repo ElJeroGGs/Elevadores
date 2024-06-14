@@ -20,6 +20,8 @@ public class main {
         ctrl.setPanelPrincipal(ventana);
         ctrl.setPanelSujetos(panelsujetos);
 
+        ventana.setctrl(ctrl);
+
         int[] numeros = {5, 0, 3, 6};
         int[] numeros2 = {1, 7, 3, 4, 8};
 
@@ -48,9 +50,6 @@ public class main {
         //user1.llamarAscensor(0);
         //user2.llamarAscensor(3);
         //user2.llamarAscensor(6);
-
-        user1.start();
-        user2.start();
 
 
 

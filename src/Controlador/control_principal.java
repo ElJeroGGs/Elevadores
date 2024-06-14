@@ -11,11 +11,16 @@ public class control_principal {
     private PanelPrincipal ventana;
     private PanelAscensor PanelAscensor;
     private Panelsujetos sujetos;
+    private Usuario user1;
+    private Usuario user2;
+    private Usuario user3;
+    private Usuario user4;
     
 
     public void setPanelPrincipal (PanelPrincipal window){
         this.ventana = window;
     }
+    
 
     public void setPanelAscensor(PanelAscensor panel){
 
@@ -62,33 +67,33 @@ public class control_principal {
 
     }
 
-    public void AscensorOUT(Ascensor ascensor, int floor, int id) {
-        int asc = 1;
-        int piso = 0;
-        int ide = 1;
-        this.PanelAscensor.AscensorOUT( asc,  piso, ide);
+    public void AscensorOUT(int ascensor, int floor, int id) {
+      
+        this.PanelAscensor.AscensorOUT( ascensor,  floor, id);
     }
 
-    public void AscensorIN(Ascensor ascensor, int floor, int id) {
-        int asc = 1;
-        int piso = 0;
-        int ide = 1;
-        this.PanelAscensor.AscensorIN( asc,  piso, ide);
+    public void AscensorIN(int ascensor, int floor, int id) {
+       
+        this.PanelAscensor.AscensorIN( ascensor,  floor, id);
     }
 
-    public void setUsuario(Usuario user1, int i) {
+    public void setUsuario(Usuario user, int i) {
         switch(i){
             case 1:
-            PanelAscensor.setUsuario(user1, "green");
+            PanelAscensor.setUsuario(user, "green");
+            this.user1 = user;
             break;
             case 2:
-            PanelAscensor.setUsuario(user1, "yellow");
+            PanelAscensor.setUsuario(user, "yellow");
+            this.user2 = user;
             break;
             case 3:
-            PanelAscensor.setUsuario(user1, "red");
+            PanelAscensor.setUsuario(user, "red");
+            this.user3 = user;
             break;
             case 4:
-            PanelAscensor.setUsuario(user1, "black");
+            PanelAscensor.setUsuario(user, "black");
+            this.user4 = user;
             break;
 
         }
@@ -99,6 +104,12 @@ public class control_principal {
     public void moverSujeto( int i, int id) {
 
         this.PanelAscensor.moverSujeto(i, id);
+    }
+
+    public void empezar() {
+
+        this.user1.start();
+        this.user2.start();
     }
 
 
