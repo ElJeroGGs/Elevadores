@@ -83,11 +83,13 @@ public class Usuario extends Thread {
     // System.out.println("El usuario " + nombre + " está esperando en el piso " +
     // piso + " para ir al piso " + destino);
 
+    
     String mensaje1 = "El usuario " + nombre + " se ha subido en el ascensor en el piso " + piso;
     //Metodo que simula que sube el sujeto
 
 
     System.out.println(mensaje1);
+    
     //Que aqui la bandera sea true
     ascensor.setFin(true);
     ascensor.llamar(this.piso, this.ascensor.getid(),this.id,"viene");

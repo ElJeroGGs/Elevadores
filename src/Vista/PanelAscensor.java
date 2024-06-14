@@ -199,7 +199,7 @@ public class PanelAscensor extends JPanel {
                 }
                 
                
-            } else if (piso > 820 - 100 * floor) {
+            } else if (piso2 > 820 - 100 * floor) {
                 if(user.getFloor() != piso2){
                     piso2 -= 1;
                 }else{

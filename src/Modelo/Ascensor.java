@@ -30,6 +30,10 @@ import Controlador.control_principal;
       this.fin = valor;
     }
 
+    public boolean getFin(){
+
+      return this.fin;
+    }
     public synchronized void setPiso(int floor){
 
       this.piso = floor;
@@ -71,7 +75,7 @@ import Controlador.control_principal;
       
                 
       try {
-        sleep(650);
+        sleep(250);
       } catch (Exception e) {
         // TODO: handle exception
       }
