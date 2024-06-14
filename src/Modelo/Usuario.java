@@ -5,7 +5,6 @@
 package Modelo;
 
 import Controlador.control_principal;
-import java.util.Random;
 
 /**
  *
@@ -20,6 +19,8 @@ public class Usuario extends Thread {
   private int[] pisos;
   private control_principal ctrl;
   private int id;
+  private int floor;
+
 
   // Constructor de la clase
   public Usuario(Ascensor a, String n, int id) {
@@ -27,6 +28,18 @@ public class Usuario extends Thread {
     piso = 0;
     ascensor = a;
     this.id = id;
+  }
+
+  public int getPiso() {
+    return piso;
+  }
+
+  public void setFloor(int flor){
+    this.floor = flor;
+  }
+
+  public int getFloor(){
+    return this.floor;
   }
 
   public void setCtrl(control_principal control) {
@@ -40,6 +53,7 @@ public class Usuario extends Thread {
     ascensor = a;
     pisos = lp;
     this.id = id;
+    this.floor = 820 - 100*piso;
   }
 
   public void VerPisos() {
@@ -54,10 +68,18 @@ public class Usuario extends Thread {
     // piso + " para ir al piso " + destino);
 
     String mensaje1 = "El usuario " + nombre + " se ha subido en el ascensor en el piso " + piso;
-    ascensor.llamar(piso, this.id);
+    //Metodo que simula que sube el sujeto
+
+
+    System.out.println(mensaje1);
+    
+    ascensor.llamar(piso, this.ascensor.getid(),this.id);
+    
+    
 
     String mensaje2 = "El usuario " + nombre + " ha bajado en el piso " + destino;
-    ascensor.llamar(destino, this.id);
+    ascensor.llamar(destino, this.ascensor.getid(),this.id);
+    System.out.println(mensaje2);
     piso = destino;
 
   }
@@ -75,24 +97,18 @@ public class Usuario extends Thread {
     reco += "]";
     
     for(int i = 0; i < pisos.length; ++i) {
+      //metodo que pinta si ya recorrió un piso
     ctrl.pintaRecorrido(reco, i, this.id);
-    llamarAscensor(pisos[i]);
+    
+      llamarAscensor(pisos[i]);
+
+      
+      
     }
 
     
 
-    for (int i = 0; i < this.pisos.length; i++) {
-      ctrl.pintaRecorrido(reco, i, this.id);
-      ctrl.moverAscensor(this.pisos[i], this.id);
-
-      try {
-        sleep(500);
-      } catch (InterruptedException e) {
-        return;
-      }
-      
-      
-    }
+    
 
     ctrl.pintaRecorrido(reco, this.pisos.length, this.id);
     

@@ -25,13 +25,17 @@ import Controlador.control_principal;
       this.id = id;
     }
 
+    public int getid(){
+      return this.id;
+    }
+
     public void setCtrl (control_principal contro){
       this.ctrl = contro;
     }
 
     //Método que si dada la posición del ascensor y el piso desde el que le llaman,
     //controla si el ascensor sube o baja
-    public synchronized void llamar(int p, int ascensor) {
+    public synchronized void llamar(int p, int ascensor, int id) {
 
 
       while(!parado) {
@@ -41,26 +45,25 @@ import Controlador.control_principal;
           return ;
         }
       }
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        return;
-      }
+      
       if(piso > p) {
-        bajar(p, ascensor);
+        bajar(p, ascensor, id);
         } else if(piso < p) {
-          subir(p, ascensor);
+          subir(p, ascensor, id);
             } else if(piso==p){
-              stay(p, ascensor);
+              stay(p, ascensor, id);
                 }
-
+      
+                
       
     }
+
+
 
     //Método modificador que simula la subida del ascensor. Muestra un mensaje cuando
     //el ascensor ha llegado al destino.
     
-    public synchronized void subir(int p, int asc) {
+    public synchronized void subir(int p, int asc, int id) {
       while(!parado) {
         try {
           wait();
@@ -70,7 +73,7 @@ import Controlador.control_principal;
       }
       parado = false;
       while (piso != p) {
-        ctrl.moverAscensor(p, asc);
+        ctrl.moverAscensor(p, asc, id);
         ++piso;
         System.out.println("Ascensor " + this.id+ " en el piso " + piso);
         
@@ -83,7 +86,7 @@ import Controlador.control_principal;
 
     //Método modificador que simula la bajada del ascensor. Muestra un mensaje cuando
     //el ascensor ha llegado al destino.
-    public synchronized void bajar(int p, int asc) {
+    public synchronized void bajar(int p, int asc, int id) {
       while(!parado) {
         try {
           wait();
@@ -93,8 +96,7 @@ import Controlador.control_principal;
       }
       parado = false;
       while (piso != p) {
-      ctrl.moverAscensor(p, p);
-      ctrl.moverAscensor(p, asc);
+      ctrl.moverAscensor(p, asc, id);
         --piso;
         System.out.println("Ascensor "+this.id+ " en el piso " + piso);
         
@@ -103,7 +105,7 @@ import Controlador.control_principal;
       notifyAll();
     }
 
-    public synchronized void stay(int p, int asc) {
+    public synchronized void stay(int p, int asc, int id) {
 
       while(!parado) {
         try {
@@ -113,11 +115,26 @@ import Controlador.control_principal;
         }
       }
       parado = false;
-      ctrl.moverAscensor(p, asc);
+      ctrl.moverAscensor(p, asc, id);
         
       
       parado = true;
       notifyAll();
+    }
+
+    public synchronized void AscensorIN(){
+    parado = true;
+
+    }
+
+    public synchronized void AscensorOUT(){
+
+      parado = true;
+      int floor = 0;
+      int id = 0;
+      ctrl.AscensorOUT(this, floor, id);
+
+
     }
 
     //Método observador que muestra el piso

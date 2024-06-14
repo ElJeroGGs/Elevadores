@@ -2,6 +2,8 @@ package Vista;
 
 import javax.swing.JPanel;
 
+import Modelo.Usuario;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,10 +14,34 @@ public class PanelAscensor extends JPanel {
 
     private int piso = 820;
     private int piso2 = 820;
+    private Usuario green;
+    private Usuario yellow;
+    private Usuario red;
+    private Usuario black;
+
 
     public PanelAscensor() {
 
 
+    }
+
+    public void setUsuario(Usuario user, String color) {
+        switch (color) {
+            case "green":
+            this.green = user;
+                break;
+            case "yellow":
+            this.yellow = user;
+                break;
+            case "red":
+            this.red = user;
+                break;
+            case "black":
+            this.black = user;
+                break;
+        
+        }
+       
     }
 
     @Override
@@ -64,16 +90,18 @@ public class PanelAscensor extends JPanel {
 
             //Draw people 
             g2.setColor(Color.GREEN);
-            g2.fillOval( 335,piso + 50, 12, 12);
+            g2.fillOval( 335,(this.green.getFloor()) + 50, 12, 12);
             g2.setColor(Color.YELLOW);
-            g2.fillOval( 425,piso2 + 50 , 12, 12);
+            g2.fillOval( 425,(this.yellow.getFloor()) + 50, 12, 12);
         }
 
     }
 
     //Metodo que mueve el ascensor 1
 
-    public void moverAscensor1(int floor) {
+    public void moverAscensor1(int floor, int id) {
+
+        
 
         //Cuando se mueva el ascensor, se debe especificar cuantas plantas se va a mover, y en que dirección (arriba o abajo)
         // 820 - 100 * piso
@@ -87,12 +115,31 @@ public class PanelAscensor extends JPanel {
         // 820 - 100 * 1 = 740
         // 820 - 100 * 0 = 840
         //Mueve el ascensor gradualmente
+       
+        Usuario user = null;
+        switch(id){
+            case 1:
+            user = this.green;
+            break;
+            case 2:
+            user = this.yellow;
+            break;
+            case 3:
+            user = this.red;
+            break;
+            case 4:
+            user = this.black;
+            break;
+        }
 
+//Mueve el ascensor
         while(piso != 820 - 100 * floor) {
             if (piso < 820 - 100 * floor) {
                 piso += 1;
+                user.setFloor(piso); 
             } else if (piso > 820 - 100 * floor) {
                 piso -= 1;
+                user.setFloor(piso);
             } else {
                 break;
             }
@@ -110,13 +157,30 @@ public class PanelAscensor extends JPanel {
 
     //Metodo que mueve el ascensor 2
 
-    public void moverAscensor2(int floor){
+    public void moverAscensor2(int floor, int id){
+        Usuario user = null;
+        switch(id){
+            case 1:
+            user = this.green;
+            break;
+            case 2:
+            user = this.yellow;
+            break;
+            case 3:
+            user = this.red;
+            break;
+            case 4:
+            user = this.black;
+            break;
+        }
 
         while(piso2 != 820 - 100 * floor) {
             if (piso2 < 820 - 100 * floor) {
                 piso2 += 1;
+                user.setFloor(piso2);
             } else if (piso > 820 - 100 * floor) {
                 piso2 -= 1;
+                user.setFloor(piso2);
             } else {
                 break;
             }
@@ -133,6 +197,39 @@ public class PanelAscensor extends JPanel {
 
 
     }
+
+    public void moverSujeto(int floor, int id) {
+
+        int piso = 0;
+        
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                return;
+            }
+            repaint();
+        }
+
+       
+    
+
+    public void AscensorIN(int asc, int piso, int ide) {
+
+        switch(asc){
+    
+            case 1:
+            break;
+            
+            case 2: 
+            break;
+        }
+    
+        }
+    
+        public void AscensorOUT(int asc, int piso, int ide) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'AscensorOUT'");
+        }
 
     //Coordenadas de los sujetos
     //Ascensor 1
