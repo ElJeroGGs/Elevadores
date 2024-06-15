@@ -56,6 +56,7 @@ JLabel time4;
     }
 
     public void setRecorrido(int[] recorrido, int id){
+
         String reco ="["+recorrido[0];
         for (int i = 1; i< recorrido.length; i++){
             reco += ",";
@@ -68,6 +69,10 @@ JLabel time4;
         switch (id) {
             
     case 1:
+    if(rec1!=null && time1!=null){
+        remove(rec1);
+        remove(time1);
+    }
         this.recorrido1 = recorrido;
         rec1 = new JLabel(reco);
         time1= new JLabel("0 ms");
@@ -77,9 +82,14 @@ JLabel time4;
         rec1.setBounds(0, 150, 200, 60);
         add(rec1);
         add(time1);
+        this.pintaRecorrido(reco, 0, id);
         break;
     case 2:
         this.recorrido2 = recorrido;
+        if(rec2!=null && time2!=null){
+            remove(rec2);
+            remove(time2);
+        }
         rec2 = new JLabel(reco);
         time2= new JLabel("0 ms");
         rec2.setFont(new Font("Serif", Font.PLAIN, 30));
@@ -88,9 +98,14 @@ JLabel time4;
         time2.setFont(new Font("Serif", Font.PLAIN, 20));
         add(rec2);
         add(time2);
+        this.pintaRecorrido(reco, 0, id);
         break;
     case 3:
         this.recorrido3 = recorrido;
+        if(rec3!=null && time3!=null){
+            remove(rec3);
+            remove(time3);
+        }
         rec3 = new JLabel(reco);
         time3= new JLabel("0 ms");
         rec3.setFont(new Font("Serif", Font.PLAIN, 30));
@@ -99,9 +114,14 @@ JLabel time4;
         time3.setFont(new Font("Serif", Font.PLAIN, 20));
         add(rec3);
         add(time3);
+        this.pintaRecorrido(reco, 0, id);
         break;
     case 4:
         this.recorrido4 = recorrido;
+        if(rec4!=null && time4!=null){
+            remove(rec4);
+            remove(time4);
+        }
         rec4 = new JLabel(reco);
         time4= new JLabel("0 ms");
         rec4.setFont(new Font("Serif", Font.PLAIN, 30));
@@ -110,10 +130,14 @@ JLabel time4;
         time4.setFont(new Font("Serif", Font.PLAIN, 20));
         add(rec4);
         add(time4);
+        this.pintaRecorrido(reco, 0, id);
         break;
+
+        
 }
 
-
+        revalidate();
+        repaint();
 
     }
 
@@ -137,8 +161,6 @@ public void pintatiempo(long tiempo, int id){
         default:
             break;
     }
-    revalidate();
-    repaint();
 
 
 }
@@ -201,6 +223,9 @@ public void pintatiempo(long tiempo, int id){
                 this.repaint();
                 break;
     }
+
+                this.revalidate();
+                this.repaint();
 }
 
     

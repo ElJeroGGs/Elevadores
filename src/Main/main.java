@@ -24,7 +24,7 @@ public class main {
 
         ventana.setctrl(ctrl);
 
-        int[] numeros =  {5, 0, 3, 6, 7, 8, 1};
+        int[] numeros = {5, 0, 3, 6, 7, 8, 1};
         int[] numeros2 = {1, 7, 3, 4, 8, 6, 5};
         int[] numeros3 = {2, 5, 6, 7, 8, 1, 2};
         int[] numeros4 = {1, 2, 3, 4, 5, 6, 8};
@@ -65,10 +65,6 @@ public class main {
         ctrl.setTimer(time);
         
 
-        //user1.llamarAscensor(5);
-        //user1.llamarAscensor(0);
-        //user2.llamarAscensor(3);
-        //user2.llamarAscensor(6);
 
 
 

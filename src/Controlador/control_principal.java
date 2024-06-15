@@ -1,5 +1,6 @@
 package Controlador;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -256,6 +257,24 @@ public class control_principal {
 
        return fin;
     
+    }
+
+    public void generar() {
+
+        this.user1.generar();
+        this.user2.generar();
+        this.user3.generar();
+        this.user4.generar();
+
+        this.setRecorrido(this.user1.getPisos(),1);
+
+        this.setRecorrido(this.user2.getPisos(),2);
+
+        this.setRecorrido(this.user3.getPisos(),3);
+
+        this.setRecorrido(this.user4.getPisos(),4);
+
+       
     }
 
 

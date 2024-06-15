@@ -46,25 +46,31 @@ public class PanelPrincipal extends JFrame implements ActionListener {
         // Crear un nuevo botón
         JButton btnEmpezar = new JButton("Empezar");
         JButton btnReiniciar = new JButton("Reiniciar");
+        JButton btnGenerar = new JButton("Generar pisos aleatorios");
+
         btnReiniciar.setToolTipText("Es muy inestable, se recomienda cerrar y volver a ejecutar el programa");
         btnEmpezar.setBounds(1200, 750, 200, 50); // Ajusta la posición y el tamaño según tus necesidades
         btnReiniciar.setBounds(1200, 550, 200, 50);
+        btnGenerar.setBounds(1200, 650, 200, 50);
         // Agregar un ActionListener al botón
         btnEmpezar.addActionListener(this);
         btnEmpezar.setActionCommand("empezar");
+        btnGenerar.addActionListener(this);
+        btnGenerar.setActionCommand("generar");
         btnReiniciar.addActionListener(this);
         btnReiniciar.setActionCommand("reiniciar");
 
         // Agregar el botón al panel
         add(btnEmpezar);
         add(btnReiniciar);
+        add(btnGenerar);
 
         // ...
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
 String comand = e.getActionCommand();
 switch (comand) {
     case "empezar":
@@ -74,6 +80,12 @@ switch (comand) {
     case "reiniciar":
     ctrl.reiniciar();
         break;
+    
+    case "generar":
+    ctrl.generar();
+    revalidate();
+    repaint();
+            break;
 
     default:
         break;

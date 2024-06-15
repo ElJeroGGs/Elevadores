@@ -81,6 +81,11 @@ public class Usuario extends Thread {
       System.out.println(nombre + " va al piso " + pisos[i]);
   }
 
+  public int[] getPisos(){
+
+    return this.pisos;
+  }
+
   // Método que llama al ascensor para ir de un piso a otro
   public  synchronized void llamarAscensor(int destino) {
 
@@ -137,10 +142,6 @@ public class Usuario extends Thread {
       ctrl.pintaRecorrido(reco, i, this.id);
       llamarAscensor(pisos[i]);
       
-      
-
-      
-      
     }
 
     ctrl.pintaRecorrido(reco, this.pisos.length, this.id);
@@ -175,6 +176,24 @@ if(fin==false){
 
   public Ascensor getAscensor() {
     return this.ascensor;
+  }
+
+
+  public void generar() {
+
+  Random r = new Random();
+  pisos = new int[7];
+
+  for(int i = 0; i<7; i++){
+
+pisos[i] = r.nextInt(9);
+
+
+
+
+  }
+
+
   }
 
 

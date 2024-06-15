@@ -90,13 +90,24 @@ public class PanelAscensor extends JPanel {
 
             //Draw people 
             g2.setColor(Color.GREEN);
-            g2.fillOval( 335+this.green.getAbordo(),(this.green.getFloor()) + 50, 12, 12);
+            if(this.green!=null){
+                g2.fillOval( 335+this.green.getAbordo(),(this.green.getFloor()) + 50, 12, 12);
+            }
+            
             g2.setColor(Color.YELLOW);
+            if(this.yellow!=null){
+                
             g2.fillOval( 425+this.yellow.getAbordo(),(this.yellow.getFloor()) + 50, 12, 12);
+            }
             g2.setColor(Color.RED);
-            g2.fillOval( 350+this.red.getAbordo(),(this.red.getFloor()) + 50, 12, 12);
+            if(this.red!=null){
+                g2.fillOval( 350+this.red.getAbordo(),(this.red.getFloor()) + 50, 12, 12);
+            }
             g2.setColor(Color.WHITE);
-            g2.fillOval( 440+this.white.getAbordo(),(this.white.getFloor()) + 50, 12, 12);
+            if(this.white!=null){
+                g2.fillOval( 440+this.white.getAbordo(),(this.white.getFloor()) + 50, 12, 12);
+            }
+            
         }
 
     }
