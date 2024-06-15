@@ -13,12 +13,16 @@ int[] recorrido3;
 int[] recorrido4;
 
 JLabel rec1;
+JLabel time1;
 
 JLabel rec2;
+JLabel time2;
 
 JLabel rec3;
+JLabel time3;
 
 JLabel rec4;
+JLabel time4;
 
 
     public Panelsujetos(){
@@ -66,30 +70,46 @@ JLabel rec4;
     case 1:
         this.recorrido1 = recorrido;
         rec1 = new JLabel(reco);
+        time1= new JLabel("0 ms");
         rec1.setFont(new Font("Serif", Font.PLAIN, 30));
+        time1.setBounds(30, 190, 200, 60);
+        time1.setFont(new Font("Serif", Font.PLAIN, 20));
         rec1.setBounds(0, 150, 200, 60);
         add(rec1);
+        add(time1);
         break;
     case 2:
         this.recorrido2 = recorrido;
         rec2 = new JLabel(reco);
+        time2= new JLabel("0 ms");
         rec2.setFont(new Font("Serif", Font.PLAIN, 30));
         rec2.setBounds(0, 350, 200, 60);
+        time2.setBounds(30, 390, 200, 60);
+        time2.setFont(new Font("Serif", Font.PLAIN, 20));
         add(rec2);
+        add(time2);
         break;
     case 3:
         this.recorrido3 = recorrido;
         rec3 = new JLabel(reco);
+        time3= new JLabel("0 ms");
         rec3.setFont(new Font("Serif", Font.PLAIN, 30));
         rec3.setBounds(0, 550, 200, 60);
+        time3.setBounds(30, 590, 200, 60);
+        time3.setFont(new Font("Serif", Font.PLAIN, 20));
         add(rec3);
+        add(time3);
         break;
     case 4:
         this.recorrido4 = recorrido;
         rec4 = new JLabel(reco);
+        time4= new JLabel("0 ms");
         rec4.setFont(new Font("Serif", Font.PLAIN, 30));
         rec4.setBounds(0, 750, 200, 60);
+        time4.setBounds(30, 790, 200, 60);
+        time4.setFont(new Font("Serif", Font.PLAIN, 20));
         add(rec4);
+        add(time4);
         break;
 }
 
@@ -97,6 +117,31 @@ JLabel rec4;
 
     }
 
+public void pintatiempo(long tiempo, int id){
+
+    switch (id) {
+        case 1:
+        this.time1.setText(tiempo+" ms");
+        break;
+        case 2:
+        this.time2.setText(tiempo+" ms");
+        break;
+        case 3:
+        this.time3.setText(tiempo+" ms");
+        break;
+        case 4:
+        this.time4.setText(tiempo+" ms");
+        break;
+
+    
+        default:
+            break;
+    }
+    revalidate();
+    repaint();
+
+
+}
     public void pintaRecorrido(String reco,int recorridopintado, int id){
 
         String firstHalf = reco.substring(0, 1);

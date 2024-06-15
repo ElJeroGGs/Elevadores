@@ -64,6 +64,7 @@ public class PanelPrincipal extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
 String comand = e.getActionCommand();
 switch (comand) {
     case "empezar":

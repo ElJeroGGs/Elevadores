@@ -23,6 +23,9 @@ public class Usuario extends Thread {
   private int id;
   private int floor;
   private int abordo;
+  private long tiempoinicio = 0;
+  private long tiempofinal = 0;
+  boolean fin = false;
 
 
   // Constructor de la clase
@@ -34,6 +37,7 @@ public class Usuario extends Thread {
     abordo = 35;
     this.floor = 820 - 100*piso;
   }
+
 
   public int getAbordo(){
 
@@ -115,7 +119,9 @@ public class Usuario extends Thread {
   // Método run
   @Override
   public  void run() {
-    while (!Thread.currentThread().isInterrupted()) {
+    this.tiempoinicio = System.currentTimeMillis();
+
+    
     
       String reco = "[" + this.pisos[0];
     for (int i = 1; i < this.pisos.length; i++) {
@@ -137,28 +143,42 @@ public class Usuario extends Thread {
       
     }
 
-    
-
-    
-
     ctrl.pintaRecorrido(reco, this.pisos.length, this.id);
+
+    
+
+    
     
       
-      try {
-          Thread.sleep(1000); // Simula un trabajo que puede ser interrumpido
-      } catch (InterruptedException e) {
-          // Si se interrumpe el sueño, termina la ejecución
-          Thread.currentThread().interrupt();
-          return;
-      }
+      
+  
+this.tiempofinal = System.currentTimeMillis();
+
+fin = true;
+this.interrupt();
+
+    
   }
 
+  public long getTiempoFinal(){
+    return tiempofinal-tiempoinicio;
+  }
+
+  public long getTiempo(){
+if(fin==false){
+  return System.currentTimeMillis() - tiempoinicio;
+}else{
+  return tiempofinal - tiempoinicio;
+}
     
   }
 
   public Ascensor getAscensor() {
     return this.ascensor;
   }
+
+
+  
 }
 
 

@@ -1,7 +1,11 @@
 package Controlador;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import Modelo.Ascensor;
 import Modelo.Usuario;
+import Modelo.timer;
 import Vista.PanelAscensor;
 import Vista.PanelPrincipal;
 import Vista.Panelsujetos;
@@ -17,12 +21,19 @@ public class control_principal {
     private Usuario user4;
     private Ascensor ascensor1;
     private Ascensor ascensor2;
+    timer time;
+    boolean fin = false;
+    
     
 
     public void setPanelPrincipal (PanelPrincipal window) {
         this.ventana = window;
     }
     
+    public void setTimer(timer tim){
+        this.time = tim;
+
+    }
 
     public void setPanelAscensor(PanelAscensor panel){
 
@@ -123,6 +134,15 @@ public class control_principal {
         this.user2.start();
         this.user3.start();
         this.user4.start();
+
+        this.time.start();
+
+    }
+
+
+    public void timer(Usuario u, int id){
+
+        this.sujetos.pintatiempo(u.getTiempo(), id);
     }
 
 
@@ -201,7 +221,41 @@ public class control_principal {
     this.user3.start();
     this.user4.start();
 
+    
 
+
+    }
+
+    public void setfin(boolean bandera){
+
+        this.fin = bandera;
+    }
+
+    public Usuario getuser(int id) {
+        switch (id) {
+            case 1:
+            return this.user1;
+            
+           
+            case 2:
+            return this.user2;
+            
+            case 3:
+            return this.user3;
+            
+            case 4:
+            return this.user4;
+            
+        
+          default:
+          return null;
+        }
+          }
+
+    public boolean getfin() {
+
+       return fin;
+    
     }
 
 

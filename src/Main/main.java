@@ -3,6 +3,7 @@ package Main;
 import Controlador.control_principal;
 import Modelo.Ascensor;
 import Modelo.Usuario;
+import Modelo.timer;
 import Vista.PanelAscensor;
 import Vista.PanelPrincipal;
 import Vista.Panelsujetos;
@@ -14,6 +15,7 @@ public class main {
         Panelsujetos panelsujetos = new Panelsujetos();
         PanelPrincipal ventana = new PanelPrincipal(panelAscensor, panelsujetos);
         control_principal ctrl = new control_principal();
+        
        
        
         ctrl.setPanelAscensor(panelAscensor);
@@ -22,10 +24,10 @@ public class main {
 
         ventana.setctrl(ctrl);
 
-        int[] numeros = {5, 0, 3, 6};
-        int[] numeros2 = {1, 7, 3, 4, 8};
-        int[] numeros3 = {2, 5, 6, 7, 8};
-        int[] numeros4 = {1, 2, 3, 4, 5, 6, 7, 8};
+        int[] numeros =  {5, 0, 3, 6, 7, 8, 1};
+        int[] numeros2 = {1, 7, 3, 4, 8, 6, 5};
+        int[] numeros3 = {2, 5, 6, 7, 8, 1, 2};
+        int[] numeros4 = {1, 2, 3, 4, 5, 6, 8};
 
         Ascensor asc = new Ascensor(1);
         Ascensor asc2 = new Ascensor(2);
@@ -57,6 +59,11 @@ public class main {
         ctrl.setUsuario(user2, 2);
         ctrl.setUsuario(user3, 3);
         ctrl.setUsuario(user4, 4);
+
+        timer time = new timer();
+        time.setctrl(ctrl);
+        ctrl.setTimer(time);
+        
 
         //user1.llamarAscensor(5);
         //user1.llamarAscensor(0);
