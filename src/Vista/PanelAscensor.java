@@ -296,6 +296,16 @@ public class PanelAscensor extends JPanel {
         
         }
 
+        public void reiniciar() {
+            piso = 820;
+            piso2 = 820;
+
+            revalidate();
+            repaint();
+            
+        
+        }
+
     //Coordenadas de los sujetos
     //Ascensor 1
     //(335,870)

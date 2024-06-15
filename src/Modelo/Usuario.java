@@ -115,8 +115,9 @@ public class Usuario extends Thread {
   // Método run
   @Override
   public  void run() {
-
-    String reco = "[" + this.pisos[0];
+    while (!Thread.currentThread().isInterrupted()) {
+    
+      String reco = "[" + this.pisos[0];
     for (int i = 1; i < this.pisos.length; i++) {
       reco += ",";
       reco += pisos[i];
@@ -142,10 +143,22 @@ public class Usuario extends Thread {
 
     ctrl.pintaRecorrido(reco, this.pisos.length, this.id);
     
+      
+      try {
+          Thread.sleep(1000); // Simula un trabajo que puede ser interrumpido
+      } catch (InterruptedException e) {
+          // Si se interrumpe el sueño, termina la ejecución
+          Thread.currentThread().interrupt();
+          return;
+      }
+  }
 
+    
   }
 
   public Ascensor getAscensor() {
     return this.ascensor;
   }
 }
+
+

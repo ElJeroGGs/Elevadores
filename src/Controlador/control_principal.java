@@ -19,7 +19,7 @@ public class control_principal {
     private Ascensor ascensor2;
     
 
-    public void setPanelPrincipal (PanelPrincipal window){
+    public void setPanelPrincipal (PanelPrincipal window) {
         this.ventana = window;
     }
     
@@ -91,9 +91,10 @@ public class control_principal {
             this.user1 = user;
             break;
             case 2:
+            
             PanelAscensor.setUsuario(user, "yellow");
-            this.user2 = user;
             this.ascensor2 = user.getAscensor();
+            this.user2 = user;
             break;
             case 3:
             PanelAscensor.setUsuario(user, "red");
@@ -126,18 +127,81 @@ public class control_principal {
 
 
     public void reiniciar() {
-          // Interrumpir los hilos actuales
+    // Interrumpir los hilos actuales
     this.user1.interrupt();
     this.user2.interrupt();
     this.user3.interrupt();
     this.user4.interrupt();
 
+    this.user1=null;
+    this.user2=null;
+    this.user3=null;
+    this.user4=null;
 
+    this.ascensor1=null;
+    this.ascensor2=null;
+  
+
+    int[] numeros = {5, 0, 3, 6};
+        int[] numeros2 = {1, 7, 3, 4, 8};
+        int[] numeros3 = {2, 5, 6, 7, 8};
+        int[] numeros4 = {1, 2, 3, 4, 5, 6, 7, 8};
+
+    Ascensor asc = new Ascensor(1);
+
+    Ascensor asc2 = new Ascensor(2);
+       
+    Usuario useri1 = new Usuario(asc, "Verde",numeros, 1, 35);
+    useri1.setCtrl(this);
+    
+
+        Usuario useri2 = new Usuario(asc2, "Amarillo",numeros2,2, 35);
+        useri2.setCtrl(this);
+
+        Usuario useri3 = new Usuario(asc, "Rojo",numeros3, 3, 35);
+        useri3.setCtrl(this);
+
+        Usuario useri4 = new Usuario(asc2, "Blanco",numeros4, 4, 35);
+        useri4.setCtrl(this);
+        
+        Panelsujetos suj = new Panelsujetos();
+        
+        this.sujetos = null;
+        this.sujetos = suj;
+
+
+        this.setRecorrido(numeros, 1);
+        this.setRecorrido(numeros2, 2);
+        this.setRecorrido(numeros3, 3);
+        this.setRecorrido(numeros4, 4);
+
+
+
+        asc.setCtrl(this);
+        asc2.setCtrl(this);
+
+        
+        this.setUsuario(useri1, 1);
+        this.setUsuario(useri2, 2);
+        this.setUsuario(useri3, 3);
+        this.setUsuario(useri4, 4);
+
+        this.PanelAscensor.reiniciar();
+        this.ventana.reiniciar(suj);
+       
+        
+
+        this.ascensor1= asc;
+        this.ascensor2 = asc;
+        
+    
     // Iniciar los nuevos hilos
     this.user1.start();
     this.user2.start();
     this.user3.start();
     this.user4.start();
+
+
     }
 
 

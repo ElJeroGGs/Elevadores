@@ -6,6 +6,7 @@ import java.awt.Panel;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import Controlador.control_principal;
 
@@ -16,14 +17,17 @@ import java.awt.event.ActionEvent;
 public class PanelPrincipal extends JFrame implements ActionListener {
 
     private control_principal ctrl;
+    private Panelsujetos sujetos;
 
     public void setctrl(control_principal contro){
 
         this.ctrl = contro;
     }
+    
 
-    public PanelPrincipal(PanelAscensor panel, Panelsujetos sujetos) {
+    public PanelPrincipal(PanelAscensor panel, Panelsujetos sujeto) {
 
+        sujetos = sujeto;
         //Panel de los ascensores
         this.setLayout(null);
         add(panel);
@@ -42,6 +46,7 @@ public class PanelPrincipal extends JFrame implements ActionListener {
         // Crear un nuevo botón
         JButton btnEmpezar = new JButton("Empezar");
         JButton btnReiniciar = new JButton("Reiniciar");
+        btnReiniciar.setToolTipText("Es muy inestable, se recomienda cerrar y volver a ejecutar el programa");
         btnEmpezar.setBounds(1200, 750, 200, 50); // Ajusta la posición y el tamaño según tus necesidades
         btnReiniciar.setBounds(1200, 550, 200, 50);
         // Agregar un ActionListener al botón
@@ -73,6 +78,18 @@ switch (comand) {
         break;
 }
         
+    }
+
+    public void reiniciar(Panelsujetos suj) {
+        
+        remove(this.sujetos);
+        this.sujetos = null;
+        this.sujetos = suj;
+        //Componentes de los sujetos
+       sujetos.setBounds(750,0,450,900);
+       add(sujetos);
+        revalidate();
+        repaint();
     }
 
     
